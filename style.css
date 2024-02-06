@@ -1,0 +1,778 @@
+:root {
+  --color-blue: #345ff6;
+  --color-light-blue-1: #e7f5fe;
+  --color-light-blue-2: #d6e6fe;
+  --color-gunmetal: #253347;
+  --color-dark-electric-blue: #5e6e85;
+  --color-borders: #d8e2e7;
+  --color-pure-white: #ffffff;
+}
+@font-face {
+  font-family: "InterVariable";
+  src: url(/assets/fonts/Inter-VariableFont_slnt\,wght.ttf);
+  font-weight: 100 900;
+  font-style: normal to italic;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "InterVariable", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--color-gunmetal);
+  line-height: 1.5;
+  background-color: var(--color-pure-white);
+}
+
+.heading-1 {
+  font-size: 6.4rem;
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+.heading-2 {
+  font-size: 4.8rem;
+  line-height: 1.1;
+  font-weight: 600;
+}
+.heading-3 {
+  font-size: 2.4rem;
+  line-height: 1.1;
+  font-weight: 600;
+}
+.heading-4 {
+  font-size: 2rem;
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+/* .container {
+  padding: 7.5rem 15rem;
+} */
+
+/* HEADER */
+.header {
+  position: relative;
+  overflow: hidden; /* Pour s'assurer que le pseudo-élément n'affecte pas la disposition en dehors de .hero-section */
+  padding: 7.5rem 20rem;
+  min-height: 50vh;
+}
+
+.header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 70%;
+  height: 100%;
+  background-image: linear-gradient(
+    to right,
+    var(--color-pure-white),
+    var(--color-light-blue-2)
+  ); /* Couleur de fond spécifiée */
+  z-index: -1; /* S'assure que le fond est derrière tout contenu interne */
+  border-radius: 0 0 3rem 3rem;
+}
+.header__logo {
+  margin-bottom: 7.5rem;
+}
+.hero-section__heading {
+  margin-bottom: 5rem;
+}
+.hero-section {
+  display: flex;
+  justify-content: space-between;
+}
+.hero-section__title {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+}
+.bmi-calculator {
+  max-width: 50%;
+}
+.form-group {
+  margin-bottom: 10px; /* Ajoute un peu d'espace entre les groupes */
+}
+
+.form-group label,
+.form-group input {
+  display: inline-block; /* Alignement horizontal des éléments */
+  margin-right: 10px; /* Espacement entre les éléments */
+}
+
+/* Optionnel : Pour un alignement plus précis et une mise en page responsive */
+@media (min-width: 600px) {
+  .form-group {
+    display: flex;
+    align-items: center; /* Alignement vertical au centre */
+  }
+}
+
+/* BMI calculator */
+
+.bmi-calculator {
+  background-color: var(--color-pure-white);
+  padding: 2.5rem;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 55rem;
+  box-shadow: 10px 10px 50px 0 rgba(0, 0, 0, 0.2);
+}
+
+.bmi-calculator__form-group-metric-imperial {
+  margin: 2rem 0;
+  display: flex;
+}
+
+.bmi-calculator__form-group-1 {
+  display: flex;
+
+  /* justify-content: space-between; */
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.bmi-calculator__form-group-2 {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2.5rem;
+}
+
+.bmi-calculator__field {
+  display: flex;
+  flex-direction: column;
+}
+
+.height,
+.weight {
+  display: flex;
+  flex-direction: column;
+}
+
+/* #height,
+#weight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+.bmi-calculator__input-group-1 {
+  position: relative;
+  display: flex;
+}
+.bmi-calculator__input-group-2 {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bmi-calculator__input {
+  background-color: transparent; /* Supprime le fond */
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 1rem;
+  outline: none; /* Supprime le contour lors de la sélection */
+  padding: 1.5rem;
+  margin: 0; /* Réinitialise le margin */
+  max-width: auto;
+  height: auto; /* Réinitialise la hauteur */
+  font-size: 2rem;
+  color: inherit; /* Utilise la couleur de texte du parent */
+  margin-top: 1rem;
+  max-width: 20rem;
+  padding-right: 3rem;
+}
+
+.bmi-calculator__input:focus {
+  border: 1px solid var(--color-blue);
+}
+
+.bmi-calculator__field--weight {
+  margin-top: 1rem;
+}
+
+.bmi-calculator__unit-height,
+.bmi-calculator__unit-weight {
+  position: absolute;
+  top: 2rem;
+  right: 7rem; /* Ajustez selon le besoin */
+  color: var(--color-blue); /* Couleur du texte de l'unité */
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.bmi-calculator__unit-height-ft,
+.bmi-calculator__unit-weight-st {
+  position: absolute;
+  top: 2rem;
+  right: 32rem; /* Ajustez selon le besoin */
+  color: var(--color-blue); /* Couleur du texte de l'unité */
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.bmi-calculator__unit-height-in,
+.bmi-calculator__unit-weight-lbs {
+  position: absolute;
+  top: 2rem;
+  right: 2rem; /* Ajustez selon le besoin */
+  color: var(--color-blue); /* Couleur du texte de l'unité */
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.bmi-calculator__cta {
+  background-color: var(--color-blue);
+  color: var(--color-pure-white);
+  padding: 3rem;
+  border-radius: 10rem 50rem 50rem 10rem;
+}
+
+.bmi-calculator__heading {
+  margin-bottom: 1rem;
+}
+
+.bmi-calculator__result {
+  background-color: var(--color-blue);
+  color: var(--color-pure-white);
+  padding: 3rem;
+  border-radius: 10rem 50rem 50rem 10rem;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2.5rem;
+  width: 50rem;
+}
+
+.bmi-calculator__bmi {
+  max-width: 50%;
+}
+
+.bmi-calculator__paragraph {
+  font-weight: 600;
+}
+
+.bmi-calculator__result-value {
+  font-size: 5rem;
+  font-weight: 600;
+}
+
+.bmi-calculator__infos {
+  max-width: 50%;
+}
+
+.imperial-active {
+  margin-left: 10rem;
+}
+
+.bmi-calculator__field,
+.metric,
+.imperial {
+  min-width: 25rem;
+}
+
+.bmi-calculator__cta {
+  cursor: pointer;
+  width: 50rem;
+}
+
+/* Appliquez uniquement la transition d'opacité. */
+.transition {
+  transition: opacity 0.5s ease-out;
+}
+
+/* SECTION 1 */
+
+section {
+  padding: 7.5rem 20rem;
+}
+
+.section-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-items: center;
+
+  position: relative;
+  height: 75rem;
+}
+
+.secion-1__img {
+  width: 65rem;
+  border-radius: 5rem;
+}
+.pattern-left {
+  position: absolute;
+  top: 2rem;
+  right: 40rem;
+}
+
+.section-1__description {
+  display: flex;
+  flex-direction: column;
+  width: 65rem;
+}
+
+.section-1__title {
+  margin-bottom: 3rem;
+}
+
+/* SECTION 2 */
+.section-2 {
+  background-color: rgba(231, 245, 254, 0.25);
+}
+.lifestyle-section__content {
+  display: flex;
+  padding: 2.5rem 0;
+}
+.lifestyle-section__heading {
+  margin: 2.5rem 0;
+}
+
+/* SECTION 2 */
+
+.bmi-section__row {
+  display: flex;
+  margin-bottom: 8rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.bmi-section__text {
+  margin-top: 3rem;
+  max-width: 70rem;
+  margin-right: 5rem;
+}
+
+.bmi-section__card {
+  width: 40rem;
+  box-shadow: 10px 10px 50px 0 rgba(0, 0, 0, 0.2);
+  padding: 2.5rem;
+  border-radius: 2rem;
+  margin-right: 5rem;
+  min-height: 24rem;
+}
+
+.bmi-section__pattern {
+  margin-right: 20rem;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 1750px) {
+  .header,
+  .section {
+    padding: 5rem 10rem;
+  }
+}
+
+@media (max-width: 1750px) {
+  .secion-1__img,
+  .section-1__description {
+    width: 55rem;
+  }
+}
+
+@media (max-width: 1350px) {
+  .secion-1__img,
+  .section-1__description {
+    width: 50rem;
+  }
+  .pattern-left {
+    display: none;
+  }
+}
+
+@media (max-width: 1225px) {
+  .hero-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .header::before {
+    width: 100%;
+  }
+  .hero-section__title {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5rem;
+  }
+  .hero-section__paragraph {
+    text-align: center;
+  }
+  .bmi-calculator {
+    max-width: 100%;
+  }
+  .bmi-calculator__unit-height-ft,
+  .bmi-calculator__unit-weight-st {
+    right: 42rem;
+  }
+  .section {
+    padding: 5rem;
+  }
+  .section-1 {
+    padding-top: 0;
+  }
+  .lifestyle-section__topic--exercise {
+    margin: 0 1.5rem;
+  }
+}
+
+@media (max-width: 1130px) {
+  .header {
+    min-height: 100vh;
+  }
+  .heading-1 {
+    font-size: 5rem;
+    text-align: center;
+  }
+  .section-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5rem;
+    margin: 5rem 0;
+  }
+  .secion-1__img {
+    max-width: 35rem;
+  }
+
+  .section-1__title {
+    margin: 5rem 0;
+  }
+
+  .lifestyle-section__content,
+  .lifestyle-section__topic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .lifestyle-section__topic--exercise {
+    margin: 7rem 0;
+  }
+
+  .bmi-section__heading {
+    font-size: 4rem;
+    text-align: center;
+  }
+  .bmi-section__text {
+    text-align: center;
+  }
+}
+
+@media (max-width: 1025px) {
+  .lifestyle-section__topic {
+    padding: 0 10rem;
+  }
+  .lifestyle-section__text {
+    text-align: center;
+  }
+  .bmi-section__row--first {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .bmi-section__block {
+    margin: 10rem 0;
+  }
+  .bmi-section__row--second {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+  }
+  .bmi-section__pattern {
+    display: none;
+  }
+  .bmi-section__card-muscle {
+    margin-right: 0;
+  }
+  .bmi-section__card-race {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .heading-2 {
+    font-size: 3.5rem;
+    text-align: center;
+  }
+  .header {
+    padding: 5rem 7.5rem;
+  }
+  .header__logo {
+    margin: 0 4rem 4rem 0;
+  }
+  .bmi-section__row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .bmi-section__row--first,
+  .bmi-section__row--second {
+    margin-bottom: 5rem;
+  }
+
+  .bmi-section__block {
+    margin: 7rem 0;
+  }
+  .bmi-section__card {
+    margin: 0;
+  }
+  .bmi-section__card-muscle {
+    margin-top: 5rem;
+  }
+  .bmi-section__card-race {
+    margin-top: 5rem;
+  }
+}
+@media (max-width: 775px) {
+  .bmi-calculator__unit-height-ft,
+  .bmi-calculator__unit-weight-st {
+    right: 40rem;
+  }
+}
+
+@media (max-width: 750px) {
+  .bmi-calculator__unit-height-ft,
+  .bmi-calculator__unit-weight-st {
+    right: 37rem;
+  }
+}
+
+@media (max-width: 725px) {
+  .bmi-calculator__unit-height-ft,
+  .bmi-calculator__unit-weight-st {
+    right: 35rem;
+  }
+}
+@media (max-width: 700px) {
+  .bmi-calculator__unit-height-ft,
+  .bmi-calculator__unit-weight-st {
+    right: 32rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .header {
+    padding: 2.5rem;
+  }
+  .bmi-calculator__form-group-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .bmi-calculator {
+    min-width: 40rem;
+  }
+  .bmi-calculator__field {
+    min-width: 20rem;
+  }
+  .bmi-calculator__result {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .bmi-calculator__bmi,
+  .bmi-calculator__infos {
+    max-width: fit-content;
+  }
+  .bmi-calculator__cta {
+    width: fit-content;
+  }
+  .bmi-calculator__unit-weight,
+  .bmi-calculator__unit-height {
+    right: 2rem;
+  }
+  .bmi-calculator__unit-height-ft,
+  .bmi-calculator__unit-weight-st {
+    right: 28rem;
+  }
+  .section-1__description {
+    width: 40rem;
+  }
+  .lifestyle-section__topic {
+    padding: 0 5rem;
+  }
+}
+@media (max-width: 520px) {
+  .bmi-calculator__unit-height-ft,
+  .bmi-calculator__unit-weight-st {
+    right: 25rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .bmi-calculator__unit-height-ft,
+  .bmi-calculator__unit-weight-st {
+    right: 27rem;
+  }
+  .bmi-calculator__unit-height,
+  .bmi-calculator__unit-weight {
+    right: 6rem;
+  }
+  .imperial {
+    min-width: 25rem;
+  }
+  .bmi-calculator__input {
+    width: 15rem;
+  }
+}
+
+@media (max-width: 485px) {
+  .bmi-calculator__unit-height-ft,
+  .bmi-calculator__unit-weight-st {
+    right: 26rem;
+  }
+}
+@media (max-width: 465px) {
+  .bmi-calculator__unit-height-ft,
+  .bmi-calculator__unit-weight-st {
+    right: 24rem;
+  }
+  .metric,
+  .imperial {
+    min-width: 15rem;
+  }
+}
+@media (max-width: 440px) {
+  .bmi-calculator__unit-height-ft,
+  .bmi-calculator__unit-weight-st {
+    right: 22rem;
+  }
+  .imperial {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 440px) {
+  .bmi-calculator__unit-height-ft,
+  .bmi-calculator__unit-weight-st {
+    right: 22rem;
+  }
+
+  .metric,
+  .imperial {
+    min-width: 20rem;
+  }
+  .section-1 {
+    padding: 2rem;
+    margin: 2rem 0;
+  }
+  .section-1__description {
+    width: 35rem;
+  }
+  .lifestyle-section__topic--exercise {
+    margin: 4rem 0;
+  }
+  .section-3 {
+    padding: 0 2rem;
+  }
+  .bmi-section__text {
+    margin: 3rem 0 0 0;
+  }
+  .bmi-section__card {
+    min-height: 20rem;
+    width: 35rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .section-2 {
+    padding: 2rem;
+  }
+
+  .bmi-section__card {
+    min-height: 20rem;
+    width: 30rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .heading-1 {
+    font-size: 4rem;
+  }
+  .heading-2 {
+    font-size: 3rem;
+  }
+  .heading-3 {
+    font-size: 2rem;
+  }
+  .bmi-calculator__details {
+    text-align: center;
+  }
+  .bmi-calculator__infos {
+    font-size: 1.5rem;
+  }
+  .section-1__description {
+    width: 32rem;
+  }
+  .lifestyle-section__topic {
+    padding: 0 2rem;
+  }
+}
+
+@media (max-width: 330px) {
+  .header__logo {
+    margin: 0 2rem 2rem 0;
+  }
+  .heading-1 {
+    font-size: 3.25rem;
+  }
+  .heading-2 {
+    font-size: 2.5rem;
+  }
+  .hero-section__heading {
+    margin-bottom: 2rem;
+  }
+  .bmi-calculator {
+    min-width: 30rem;
+  }
+  .metric,
+  .imperial {
+    min-width: 15rem;
+  }
+  .section-1__title {
+    margin: 3rem 0;
+  }
+  .section-1__description {
+    width: 30rem;
+  }
+  .section-1__paragraph {
+    font-size: 1.5rem;
+  }
+
+  .bmi-calculator__cta {
+    padding: 2rem;
+  }
+}
+@media (max-width: 320px) {
+  .section-1__description {
+    padding: 2rem;
+  }
+}
+
+/* La classe .hidden est utilisée pour cacher les éléments avec display: none après la transition. */
+.hidden {
+  display: none;
+}
